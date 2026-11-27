@@ -1,0 +1,11 @@
+{
+  "description": "Kishan D. Belavadi — first-year engineering student, independent builder and open-source explorer. Experiments, projects and field notes from the lab.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  },
+  "title": "Kishan D. Belavadi — An engineer in progress"
+}
