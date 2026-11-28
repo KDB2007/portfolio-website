@@ -243,6 +243,9 @@ export default function Terminal() {
       return
     }
     if (e.key === 'Enter') {
+      // Closing the terminal restores focus to the launcher, so without this the
+      // Enter default action would immediately re-activate it and reopen the panel.
+      e.preventDefault()
       run(value)
       setValue('')
     } else if (e.key === 'ArrowUp') {
