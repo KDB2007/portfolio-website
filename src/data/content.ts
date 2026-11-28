@@ -585,8 +585,8 @@ const experimentList: Experiment[] = [
   },
 ]
 
-// Numbered in the order each tool was tested; the active test sits at the end.
-export const experiments = experimentList.sort((a, b) => a.id.localeCompare(b.id))
+// Numbered in the order each tool was tested, but displayed newest/active first.
+export const experiments = experimentList.sort((a, b) => b.id.localeCompare(a.id))
 
 export type CaseStudy = {
   problem: string
