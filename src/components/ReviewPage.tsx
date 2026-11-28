@@ -51,7 +51,7 @@ export default function ReviewPage({ slug }: { slug: string }) {
             </div>
 
             {e.image ? (
-              <img src={e.image.src} alt={e.image.alt} className="mt-14 w-full max-w-4xl border border-paper/15" />
+              <img src={e.image.src} alt={e.image.alt} className="mt-14 w-full max-w-2xl border border-paper/15" />
             ) : null}
 
             <div className="mt-14 max-w-[62ch] space-y-5 leading-relaxed text-paper/80">

@@ -49,7 +49,15 @@ function Glyph({ e, size = 'sm' }: { e: Experiment; size?: 'sm' | 'lg' }) {
       {size === 'lg' ? (
         <span className="absolute inset-0 opacity-40 [background:repeating-linear-gradient(0deg,transparent_0_5px,rgb(241_239_232/0.08)_5px_6px)]" />
       ) : null}
-      <span className="relative">{e.glyph}</span>
+      {e.logo ? (
+        <img
+          src={e.logo}
+          alt=""
+          className={size === 'lg' ? 'relative size-2/3 object-contain' : 'relative size-full object-contain p-0.5'}
+        />
+      ) : (
+        <span className="relative">{e.glyph}</span>
+      )}
       {size === 'lg' ? <span className="absolute right-3 top-3 size-1.5 bg-ember" /> : null}
     </span>
   )
