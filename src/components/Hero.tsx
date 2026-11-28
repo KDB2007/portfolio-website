@@ -38,8 +38,11 @@ function HeroWord({ ready }: { ready: boolean }) {
       if (!el || !b) return
       const len = el.getBoundingClientRect().width // measured at 100px
       const target = v ? Math.max(window.innerHeight, 640) - 96 - 24 : b.clientWidth
+      const size = Math.floor((100 * target) / len)
       setVertical(v)
-      setFs(Math.floor((100 * target) / len))
+      // In vertical writing mode the glyph height becomes the element's width.
+      // Cap it on phones so the copy keeps a readable column.
+      setFs(v ? Math.min(size, Math.floor(window.innerWidth * 0.24)) : size)
     }
     fit()
     document.fonts?.ready.then(fit)
@@ -83,7 +86,7 @@ function HeroWord({ ready }: { ready: boolean }) {
   )
 
   return (
-    <div className="pointer-events-none relative shrink-0 pb-5 pl-[var(--gutter)] pt-24 md:order-last md:px-[var(--gutter)] md:pb-0 md:pt-0">
+    <div className="pointer-events-none relative w-auto shrink-0 pb-5 pl-[var(--gutter)] pt-24 opacity-40 md:order-last md:px-[var(--gutter)] md:pb-0 md:pt-0 md:opacity-100">
       <span ref={meas} aria-hidden className="display invisible absolute left-0 top-0 whitespace-nowrap" style={{ fontSize: 100 }}>
         {WORD}
       </span>
@@ -269,8 +272,8 @@ export default function Hero({ ready }: { ready: boolean }) {
         <div className="mt-6 grid flex-1 grid-cols-12 grid-rows-[minmax(190px,1fr)_auto] gap-x-6 gap-y-8 md:mt-[clamp(1.5rem,5vh,4rem)] md:grid-rows-1">
           <div ref={stage} aria-hidden className="col-span-12 md:order-2 md:col-span-5 md:min-h-[340px] lg:col-span-4" />
 
-          <div className="col-span-12 flex flex-col justify-end md:order-1 md:col-span-7 md:justify-center lg:col-span-5">
-            <h2 className="heading fs-h1">
+          <div className="col-span-12 flex min-w-0 flex-col justify-end md:order-1 md:col-span-7 md:justify-center lg:col-span-5">
+            <h2 data-fit className="heading fs-h1">
               <span className="block">
                 <Split text="Curious by default." delay={850} />
               </span>
