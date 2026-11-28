@@ -79,10 +79,16 @@ export default function Nav({ ready }: { ready: boolean }) {
           <a
             href="#top"
             onClick={go('top')}
-            className="display flex items-center gap-1.5 text-[17px] !tracking-[-0.02em] md:text-[19px]"
+            className="ml-3 flex items-center md:ml-4"
             aria-label="Kishan D Belavadi — back to top"
           >
-            KDB<span className="mb-[0.12em] size-[0.28em] self-end bg-ember" />
+            <img
+              src="/kdb-logo.png"
+              alt=""
+              draggable={false}
+              className="h-7 w-auto select-none transition-[filter] duration-500 md:h-8"
+              style={{ filter: light && !open ? 'invert(1) hue-rotate(180deg)' : undefined }}
+            />
           </a>
 
           <div className="label hidden items-center gap-2.5 xl:flex">
