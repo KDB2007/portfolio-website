@@ -59,7 +59,7 @@ export default function Workbench() {
               <TypedLine />
               <div className="label mt-2 text-mute">Last updated — Nov 2026</div>
               <button
-                onClick={() => window.dispatchEvent(new CustomEvent('terminal:toggle'))}
+                onClick={() => window.dispatchEvent(new CustomEvent('terminal:run', { detail: 'bench --status' }))}
                 className="group label mt-5 inline-flex items-center gap-2 border border-paper/20 px-3 py-2 transition-colors hover:border-ember hover:text-ember"
               >
                 <span className="text-ember">&gt;_</span> Run it in the real terminal

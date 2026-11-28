@@ -29,18 +29,33 @@ export default function About() {
         <div className="mt-16 grid grid-cols-12 gap-x-6 gap-y-14 md:mt-24">
           <div data-reveal className="col-span-12 lg:col-span-7">
             <p className="fs-h2 fade-up font-medium !leading-[1.3] tracking-[-0.015em]">
-              I'm a first-year engineering student in Bengaluru. I put AI tools through real work,
+              I’m Kishan D Belavadi, a first-year Computer Science Engineering student in Bengaluru. I put AI tools
+              through real work,
               <span className="text-ink/45">
                 {' '}
-                write down the verdict, and keep the ones that survive. Then I build with them, in public.
+                write down the verdict, and keep the ones that hold up. Then I build with them—in public.
               </span>
             </p>
             <p
               className="fs-lead fade-up mt-8 max-w-[52ch] text-ink/65"
               style={{ '--d': '120ms' } as CSSProperties}
             >
-              Right now I'm open to internships where I can do both: test things properly, and ship things people can
-              actually use.
+              I’m drawn to AI, developer tools, and fintech: places where technology does real work instead of making
+              noise. Software is the medium; solving something useful is the point.
+            </p>
+            <p
+              className="fs-lead fade-up mt-6 max-w-[52ch] text-ink/65"
+              style={{ '--d': '240ms' } as CSSProperties}
+            >
+              I learn by doing. I research, try different approaches, build, and see what holds up. Most experiments
+              don’t make the cut, but each one teaches me something I wouldn’t have learned from theory alone.
+            </p>
+            <p
+              className="fs-lead fade-up mt-6 max-w-[52ch] text-ink/65"
+              style={{ '--d': '360ms' } as CSSProperties}
+            >
+              Away from the screen, I read widely—usually about things I know little about. That curiosity often finds
+              its way back into what I build.
             </p>
           </div>
 
@@ -60,9 +75,9 @@ export default function About() {
                 </div>
                 <div className="relative mt-3 grid h-2 grid-cols-4 gap-1">
                   {[0, 1, 2, 3].map((i) => (
-                    <span key={i} className={`relative overflow-hidden ${i === 0 ? 'bg-ember' : 'bg-ink/10'}`}>
-                      {i === 1 ? (
-                        <span className="absolute inset-y-0 left-0 w-1/3 bg-ink/25 [animation:scrollcue_2.6s_var(--ease-quart)_infinite]" />
+                    <span key={i} className="relative overflow-hidden bg-ink/10">
+                      {i === 0 ? (
+                        <span className="absolute inset-y-0 left-0 w-1/3 bg-ember [animation:scrollcue_2.6s_var(--ease-quart)_infinite]" />
                       ) : null}
                     </span>
                   ))}

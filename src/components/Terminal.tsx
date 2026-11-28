@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
-import { categoryLabel, events, experiments, projects, site } from '@/data/content'
+import { categoryLabel, events, experiments, projects, site, workbench } from '@/data/content'
 import { lockScroll, scrollToTarget } from '@/lib/scroll'
 
 type Line = { id: number; node: ReactNode }
 
 const SECTIONS = ['top', 'experiments', 'projects', 'about', 'contact'] as const
-const COMMANDS = ['help', 'about', 'projects', 'experiments', 'contact', 'goto', 'whoami', 'ls', 'date', 'clear', 'exit']
+const COMMANDS = ['help', 'about', 'projects', 'experiments', 'contact', 'bench', 'goto', 'whoami', 'ls', 'date', 'clear', 'exit']
 
 const BANNER = [
   " _  __ ___  ___  _  _    _    _  _     ___      ___  ___  _       _   __   __   _    ___   ___",
@@ -146,6 +146,7 @@ export default function Terminal() {
               [<Key>projects</Key>, 'things I have built'],
               [<Key>experiments</Key>, 'tools tested and reviewed'],
               [<Key>contact</Key>, 'ways to reach me'],
+              [<Key>bench --status</Key>, 'what is on the bench right now'],
               [<Key>goto &lt;section&gt;</Key>, `jump to: ${SECTIONS.join(', ')}`],
               [<Key>whoami · ls · date</Key>, 'small utilities'],
               [<Key>clear</Key>, 'clear the screen'],
@@ -193,6 +194,26 @@ export default function Terminal() {
       case 'contact':
         print(<Table rows={site.socials.map((s) => [<Key>{s.label.toLowerCase()}</Key>, s.handle])} />)
         break
+      case 'bench': {
+        if (args[0] && args[0] !== '--status') {
+          print(<span>usage: bench --status</span>)
+          break
+        }
+        print(
+          <Table
+            rows={workbench.map((w) => [
+              <span>
+                {w.state === 'live' ? <Key>●</Key> : <Dim>○</Dim>} {w.key}
+              </span>,
+              <span>
+                {w.state === 'live' ? <Key>live</Key> : <Dim>idle</Dim>} <Dim>·</Dim> {w.text}
+              </span>,
+            ])}
+          />,
+        )
+        print(<Dim>Last updated — Nov 2026</Dim>)
+        break
+      }
       case 'goto': {
         const target = (args[0] ?? '').toLowerCase().replace(/^home$/, 'top')
         if ((SECTIONS as readonly string[]).includes(target)) {
@@ -236,6 +257,19 @@ export default function Terminal() {
         )
     }
   }
+
+  // Sections can hand a command over to the terminal, e.g. the workbench log.
+  useEffect(() => {
+    const onRun = (e: Event) => {
+      const cmd = (e as CustomEvent<string>).detail
+      if (typeof cmd !== 'string') return
+      setOpen(true)
+      run(cmd)
+      setValue('')
+    }
+    window.addEventListener('terminal:run', onRun)
+    return () => window.removeEventListener('terminal:run', onRun)
+  }, [run])
 
   const onKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === '`') {

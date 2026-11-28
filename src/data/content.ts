@@ -330,7 +330,7 @@ export const events: EventEntry[] = [
     date: 'Oct 2026',
     location: 'India',
     team: 'Team CodebaLe (4 contributors)',
-    result: null,
+    result: '4th place',
     learning:
       'Early documentation, the owner-facing frontend and speech-to-text, so a business owner can dictate a promotion instead of typing it.',
     project: '02',
