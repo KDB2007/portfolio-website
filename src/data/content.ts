@@ -271,8 +271,6 @@ export const projects: Project[] = [
       'A multi-agent marketing app that turns a plain-language promotion into a localized, fact-checked campaign, and publishes it only after the owner approves.',
     stack: ['Python', 'FastAPI', 'LangGraph', 'React', 'Vite', 'Tailwind CSS'],
     image: looplyThumb,
-    fit: 'contain',
-    imageBg: '#faf6ed',
     imageAlt: 'Looply: multi-agent marketing campaigns',
     github: null,
     demo: 'https://looplyy.vercel.app/',
