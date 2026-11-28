@@ -83,7 +83,7 @@ export default function Nav({ ready }: { ready: boolean }) {
             aria-label="Kishan D Belavadi — back to top"
           >
             <img
-              src="/kdb-logo.png"
+              src={`${import.meta.env.BASE_URL}kdb-logo.png`}
               alt=""
               draggable={false}
               className="h-7 w-auto select-none transition-[filter] duration-500 md:h-8"
