@@ -38,10 +38,8 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build
-        env:
-          # Project Pages sites are served from /<repo-name>/; without this,
-          # Vite emits root-absolute asset URLs that 404 on GitHub Pages.
-          FIGMA_PUBLIC_URL: /portfolio-website
+        # User site (kdb2007.github.io) is served from the root, so Vite's
+        # default base of '/' is correct here.
         run: pnpm build
 
       - name: Upload Pages artifact
